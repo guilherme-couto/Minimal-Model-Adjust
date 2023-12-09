@@ -1,0 +1,52 @@
+
+# Fit using leastsq (max_nfev=5000):
+Time: 3341.811392 seconds
+[[Fit Statistics]]
+    # fitting method   = leastsq
+    # function evals   = 5000
+    # data points      = 60001
+    # variables        = 28
+    chi-square         = 59.7176865
+    reduced chi-square = 9.9574e-04
+    Akaike info crit   = -414700.209
+    Bayesian info crit = -414448.150
+##  Warning: uncertainties could not be estimated:
+    theta_v_minus:  at initial value
+    theta_o:        at initial value
+    tau_v1_minus:   at initial value
+    tau_v_plus:     at boundary
+    tau_fi:         at boundary
+    tau_so2:        at boundary
+    u_s:            at initial value
+    tau_si:         at initial value
+    tau_w_inf:      at initial value
+    w_inf_star:     at initial value
+[[Variables]]
+    u_o:            0.00109305 (init = 0)
+    u_u:            1.15376922 (init = 1.56)
+    theta_v:        0.30774959 (init = 0.3)
+    theta_w:        0.13002836 (init = 0.13)
+    theta_v_minus:  0.20000000 (init = 0.2)
+    theta_o:        0.00600000 (init = 0.006)
+    tau_v1_minus:   75.0000000 (init = 75)
+    tau_v2_minus:   19.8807943 (init = 10)
+    tau_v_plus:     2.90119984 (init = 1.4506)
+    tau_w1_minus:   5.39337573 (init = 6)
+    tau_w2_minus:   242.144529 (init = 140)
+    k_w_minus:      346.021092 (init = 200)
+    u_w_minus:      0.00803184 (init = 0.016)
+    tau_w_plus:     247.954844 (init = 280)
+    tau_fi:         0.05000000 (init = 0.1)
+    tau_o1:         296.814543 (init = 470)
+    tau_o2:         6.51267552 (init = 6)
+    tau_so1:        40.9164497 (init = 40)
+    tau_so2:        0.60000012 (init = 1.2)
+    k_so:           1.78145174 (init = 2)
+    u_so:           0.78518070 (init = 0.65)
+    tau_s1:         4.90770712 (init = 2.7342)
+    tau_s2:         1.57287484 (init = 2)
+    k_s:            1.06180167 (init = 2.0994)
+    u_s:            0.90870000 (init = 0.9087)
+    tau_si:         2.90130000 (init = 2.9013)
+    tau_w_inf:      0.02730000 (init = 0.0273)
+    w_inf_star:     0.78000000 (init = 0.78)

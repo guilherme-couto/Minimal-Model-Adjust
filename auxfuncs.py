@@ -1,3 +1,5 @@
+import numpy as np
+
 # Standard Heaviside function
 def H(x):
   if (x > 0.0):
@@ -6,41 +8,38 @@ def H(x):
     return 0.0
 
 # Functions for infinity values
-def v_inf(u):
-  if (u < theta_v_minus):
-    return 1.0
-  else:
-    return 0.0
+def J_fi(u, v, parameters):
+    return -v * H(u - parameters['theta_v']) * (u - parameters['theta_v']) * (parameters['u_u'] - u) / parameters['tau_fi']
 
-def w_inf(u):
-  return (1.0 - H(u - theta_o)) * (1.0 - u/tau_w_inf) + H(u - theta_o) * w_inf_star
+def J_so(u, parameters):
+    return (u - parameters['u_o']) * (1.0 - H(u - parameters['theta_w'])) / tau_o(u, parameters) + H(u - parameters['theta_w']) / tau_so(u, parameters)
 
-# Functions for time constants
-def tau_v_minus(u):
-  return (1.0 - H(u - theta_v_minus)) * tau_v1_minus + H(u - theta_v_minus) * tau_v2_minus
+def J_si(u, w, s, parameters):
+    return -H(u - parameters['theta_w']) * w * s / parameters['tau_si']
 
-def tau_w_minus(u):
-  return tau_w1_minus + (tau_w2_minus - tau_w1_minus) * (1.0 + np.tanh(k_w_minus * (u - u_w_minus))) / 2
+def v_inf(u, parameters):
+    if u < parameters['theta_v_minus']:
+        return 1.0
+    else:
+        return 0.0
 
-def tau_so(u):
-  return tau_so1 + (tau_so2 - tau_so1) * (1.0 + np.tanh(k_so * (u - u_so))) / 2
+def w_inf(u, parameters):
+    return (1.0 - H(u - parameters['theta_o'])) * (1.0 - u/parameters['tau_w_inf']) + H(u - parameters['theta_o']) * parameters['w_inf_star']
 
-def tau_s(u):
-  return (1.0 - H(u - theta_w)) * tau_s1 + H(u - theta_w) * tau_s2
+def tau_v_minus(u, parameters):
+    return (1.0 - H(u - parameters['theta_v_minus'])) * parameters['tau_v1_minus'] + H(u - parameters['theta_v_minus']) * parameters['tau_v2_minus']
 
-def tau_o(u):
-  return (1.0 - H(u - theta_o)) * tau_o1 + H(u - theta_o) * tau_o2
+def tau_w_minus(u, parameters):
+    return parameters['tau_w1_minus'] + (parameters['tau_w2_minus'] - parameters['tau_w1_minus']) * (1.0 + np.tanh(parameters['k_w_minus'] * (u - parameters['u_w_minus']))) / 2
 
-# Functions for currents
+def tau_so(u, parameters):
+    return parameters['tau_so1'] + (parameters['tau_so2'] - parameters['tau_so1']) * (1.0 + np.tanh(parameters['k_so'] * (u - parameters['u_so']))) / 2
 
-def J_fi(u, v):
-  return -v * H(u - theta_v) * (u - theta_v) * (u_u - u) / tau_fi
+def tau_s(u, parameters):
+    return (1.0 - H(u - parameters['theta_w'])) * parameters['tau_s1'] + H(u - parameters['theta_w']) * parameters['tau_s2']
 
-def J_so(u):
-  return (u - u_o) * (1.0 - H(u - theta_w)) / tau_o(u) + H(u - theta_w) / tau_so(u)
-
-def J_si(u, w, s):
-  return -H(u - theta_w) * w * s / tau_si
+def tau_o(u, parameters):
+    return (1.0 - H(u - parameters['theta_o'])) * parameters['tau_o1'] + H(u - parameters['theta_o']) * parameters['tau_o2']
 
 # Parameters
 

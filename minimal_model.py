@@ -1,15 +1,20 @@
 from functions import *
 
+import numpy as np
 import lmfit
+import time as time_lib
+import matplotlib.pyplot as plt
+import io
+import sys
+import os
 
-
-def resid(params, x, ydata):
+def resid(params, time, ydata):
     param_values = []
     for p in param_names:
         param_values.append(params[p].value)
     
     y_model = minimal_model(param_values)
-    print(f'len(y_model) = {len(y_model)}')
+    # print(f'len(y_model) = {len(y_model)}')
     
     return y_model - ydata
 
@@ -44,8 +49,8 @@ params.add('tau_si', 2.9013, min=2.9013*0.5, max=2.9013*2.0)
 params.add('tau_w_inf', 0.0273, min=0.0273*0.5, max=0.0273*2.0)
 params.add('w_inf_star', 0.78, min=0.78*0.5, max=0.78*2.0)
 
-# Pegar dados de tempo e do ten Tusscher
-ref = read_file_to_array('tnnp-cell-epi-norm-0.010.txt')
+# # Pegar dados de tempo e do ten Tusscher
+ref = read_file_to_array('minimal-model-cell-epi-0.010.txt')
 #plot_AP(a, 'TNNP 2006 EPI Norm')
 dt = 10**-2
 t0 = 0
@@ -53,11 +58,108 @@ tf = 600
 Num_pts = (int)((tf - t0) / dt)
 time = np.linspace(0, tf, Num_pts+1)
 
-o1 = lmfit.minimize(resid, params, args=(time, ref), method='leastsq')
-print("# Fit using leastsq:")
-lmfit.report_fit(o1)
 
-plt.plot(x, ref, '.', label='data')
-plt.plot(x, ref+o1.residual, '-', label='leastsq')
-plt.legend()
-plt.savefig('fit.png')
+# max_nfev_values = [50, 100, 250, 500, 1000, 5000, 10000]
+max_nfev_values = [50, 100, 250, 500]
+
+# method = 'leastsq'
+# method = 'differential_evolution'
+method = 'basinhopping'
+# method = 'global_minimize'
+# method = 'brute'
+# method = 'nelder'
+
+model_folder = method
+os.makedirs(model_folder, exist_ok=True)
+
+for max_nfev in max_nfev_values:
+  print("Using method =", method)
+  print("Using max_nfev =", max_nfev)
+  start_time = time_lib.time()
+  o1 = lmfit.minimize(resid, params, args=(time, ref), method=method, max_nfev=max_nfev)
+  end_time = time_lib.time()
+  execution_time = end_time - start_time
+  print(f"Time: {execution_time:.6f} seconds")
+
+  # Change stdout to capture report_fit output
+  report_output = io.StringIO()
+  sys.stdout = report_output
+
+  print(f"\n# Fit using {method} (max_nfev={max_nfev}):")
+  print(f"Time: {execution_time:.6f} seconds")
+  # Print fit statistics
+  lmfit.report_fit(o1)
+  
+  # Change stdout back to normal
+  sys.stdout = sys.__stdout__
+
+  # Save report to file
+  report_filename = f'{model_folder}/report_max_nfev_{max_nfev}.txt'
+  with open(report_filename, 'w') as report_file:
+    report_file.write(report_output.getvalue())
+
+  # Save result to file
+  result_filename = f'{model_folder}/result_max_nfev_{max_nfev}.txt'
+  with open(result_filename, 'w') as result_file:
+    for residual in ref + o1.residual:
+      result_file.write(f'{residual}\n')
+
+  # Plot result
+  plt.plot(time, ref, '.', label='data')
+  plt.plot(time, ref + o1.residual, '-', label=f'{method} (max_nfev={max_nfev})')
+  plt.legend()
+  plt.savefig(f'{model_folder}/fit_{max_nfev}_max_nfev.png')
+  plt.clf()
+
+
+
+
+# import matplotlib.pyplot as plt
+# import numpy as np
+
+# # Defina uma lista de valores para max_nfev
+# max_nfev_values = [50, 100, 250, 500, 1000, 5000, 10000]
+
+# # Inicialize listas para armazenar os erros
+# relative_errors = []
+
+# # Loop sobre os valores de max_nfev
+# for max_nfev in max_nfev_values:
+#     # Carregar o arquivo de resultados
+#     result_filename = f'result_max_nfev_{max_nfev}.txt'
+#     with open(result_filename, 'r') as result_file:
+#         # Ignorar linhas de comentário, se houver
+#         while True:
+#             line = result_file.readline()
+#             if not line.startswith('#'):
+#                 break
+
+#         # Ler os resultados e ajustar o número de pontos
+#         results = [float(line.strip()) for line in result_file][:len(time)]
+
+#     # Calcular o erro relativo
+#     relative_error = [abs((r - ref_val) / ref_val) if ref_val != 0 else abs(r - ref_val) for r, ref_val in zip(results, ref)]
+
+#     # Calcular as barras de erro
+#     error_bar = np.zeros(len(time))  # Substitua por valores reais de erro se disponíveis
+
+#     # Plotar cada gráfico separadamente com barras de erro no erro relativo
+#     plt.figure(figsize=(10, 6))
+
+#     time = time[:len(results)]
+#     error_bar = error_bar[:len(results)]
+#     ref = ref[:len(results)]
+
+#     # Plotar o resultado
+#     plt.plot(time, ref, label='Reference', color='blue')
+#     plt.plot(time, results, label=f'max_nfev={max_nfev}', color='green')
+
+#     # Plotar o erro relativo com barras de erro
+#     plt.errorbar(time, relative_error, yerr=error_bar, label='Relative Error', color='red', fmt='o', markersize=2)
+
+#     plt.xlabel('Time')
+#     plt.ylabel('Result')
+#     plt.title(f'Results and Relative Error with Error Bars (max_nfev={max_nfev})')
+#     plt.legend()
+#     plt.savefig(f'fit_error_bar_max_nfev_{max_nfev}.png')
+#     plt.close()  # Fechar o gráfico para liberar memória
