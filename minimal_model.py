@@ -60,14 +60,13 @@ time = np.linspace(0, tf, Num_pts+1)
 
 
 # max_nfev_values = [50, 100, 250, 500, 1000, 5000, 10000]
-max_nfev_values = [50, 100, 250, 500]
+max_nfev_values = [5000]
 
 # method = 'leastsq'
 # method = 'differential_evolution'
-method = 'basinhopping'
+# method = 'basinhopping'
 # method = 'global_minimize'
-# method = 'brute'
-# method = 'nelder'
+method = 'nelder'
 
 model_folder = method
 os.makedirs(model_folder, exist_ok=True)
