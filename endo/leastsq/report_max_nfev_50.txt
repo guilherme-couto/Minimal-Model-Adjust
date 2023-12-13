@@ -1,0 +1,51 @@
+
+# Fit using leastsq (max_nfev=50):
+Time: 40.794779 seconds
+[[Fit Statistics]]
+    # fitting method   = leastsq
+    # function evals   = 50
+    # data points      = 60001
+    # variables        = 28
+    chi-square         = 7748.06573
+    reduced chi-square = 0.12919257
+    Akaike info crit   = -122761.127
+    Bayesian info crit = -122509.068
+##  Warning: uncertainties could not be estimated:
+    theta_w:        at initial value
+    theta_v_minus:  at initial value
+    theta_o:        at initial value
+    tau_v1_minus:   at initial value
+    tau_s2:         at initial value
+    u_s:            at initial value
+    tau_si:         at initial value
+    tau_w_inf:      at initial value
+    w_inf_star:     at initial value
+[[Variables]]
+    u_o:            0.88348229 (init = 0)
+    u_u:            1.55382527 (init = 1.56)
+    theta_v:        0.40848307 (init = 0.3)
+    theta_w:        0.13000000 (init = 0.13)
+    theta_v_minus:  0.20000000 (init = 0.2)
+    theta_o:        0.00600000 (init = 0.006)
+    tau_v1_minus:   75.0000000 (init = 75)
+    tau_v2_minus:   19.4935897 (init = 10)
+    tau_v_plus:     1.76637603 (init = 1.4506)
+    tau_w1_minus:   9.58632949 (init = 6)
+    tau_w2_minus:   143.783944 (init = 140)
+    k_w_minus:      390.611866 (init = 200)
+    u_w_minus:      0.03121069 (init = 0.016)
+    tau_w_plus:     235.760271 (init = 280)
+    tau_fi:         0.07483608 (init = 0.1)
+    tau_o1:         328.232891 (init = 470)
+    tau_o2:         10.7994367 (init = 6)
+    tau_so1:        20.5328421 (init = 40)
+    tau_so2:        2.12509212 (init = 1.2)
+    k_so:           2.23662601 (init = 2)
+    u_so:           0.82272837 (init = 0.65)
+    tau_s1:         2.17883550 (init = 2.7342)
+    tau_s2:         2.00000000 (init = 2)
+    k_s:            3.31243791 (init = 2.0994)
+    u_s:            0.90870000 (init = 0.9087)
+    tau_si:         2.90130000 (init = 2.9013)
+    tau_w_inf:      0.02730000 (init = 0.0273)
+    w_inf_star:     0.78000000 (init = 0.78)

@@ -18,39 +18,137 @@ def resid(params, time, ydata):
     
     return y_model - ydata
 
+# model = 'epi'
+model = 'endo'
+# model = 'm'
+model = 'tnnp-epi-2'
+
 # Valores e intervalos dos parâmetros do minimal model
 params = lmfit.Parameters()
-params.add('u_o', 0, min=0*0.5, max=1.0)
-params.add('u_u', 1.56, min=1.56*0.5, max=1.56*2.0)
-params.add('theta_v', 0.3, min=0.3*0.5, max=0.3*2.0)
-params.add('theta_w', 0.13, min=0.13*0.5, max=0.13*2.0)
-params.add('theta_v_minus', 0.2, min=0.2*0.5, max=0.2*2.0)
-params.add('theta_o', 0.006, min=0.006*0.5, max=0.006*2.0)
-params.add('tau_v1_minus', 75, min=75.0*0.5, max=75.0*2.0)
-params.add('tau_v2_minus', 10, min=10.0*0.5, max=10.0*2.0)
-params.add('tau_v_plus', 1.4506, min=1.4506*0.5, max=1.4506*2.0)
-params.add('tau_w1_minus', 6.0, min=6.0*0.5, max=6.0*2.0)
-params.add('tau_w2_minus', 140, min=140.0*0.5, max=140.0*2.0)
-params.add('k_w_minus', 200, min=200.0*0.5, max=200.0*2.0)
-params.add('u_w_minus', 0.016, min=0.016*0.5, max=0.016*2.0)
-params.add('tau_w_plus', 280, min=280.0*0.5, max=280.0*2.0)
-params.add('tau_fi', 0.1, min=0.1*0.5, max=0.1*2.0)
-params.add('tau_o1', 470, min=470.0*0.5, max=470.0*2.0)
-params.add('tau_o2', 6.0, min=6.0*0.5, max=6.0*2.0)
-params.add('tau_so1', 40, min=40.0*0.5, max=40.0*2.0)
-params.add('tau_so2', 1.2, min=1.2*0.5, max=1.2*2.0)
-params.add('k_so', 2.0, min=2.0*0.5, max=2.0*2.0)
-params.add('u_so', 0.65, min=0.65*0.5, max=0.65*2.0)
-params.add('tau_s1', 2.7342, min=2.7342*0.5, max=2.7342*2.0)
-params.add('tau_s2', 2.0, min=2.0*0.5, max=2.0*2.0)
-params.add('k_s', 2.0994, min=2.0994*0.5, max=2.0994*2.0)
-params.add('u_s', 0.9087, min=0.9087*0.5, max=0.9087*2.0)
-params.add('tau_si', 2.9013, min=2.9013*0.5, max=2.9013*2.0)
-params.add('tau_w_inf', 0.0273, min=0.0273*0.5, max=0.0273*2.0)
-params.add('w_inf_star', 0.78, min=0.78*0.5, max=0.78*2.0)
+
+if model == 'epi':
+  params.add('u_o', 0, min=0*0.5, max=1.0)
+  params.add('u_u', 1.56, min=1.56*0.5, max=1.56*2.0)
+  params.add('theta_v', 0.3, min=0.3*0.5, max=0.3*2.0)
+  params.add('theta_w', 0.13, min=0.13*0.5, max=0.13*2.0)
+  params.add('theta_v_minus', 0.2, min=0.2*0.5, max=0.2*2.0)
+  params.add('theta_o', 0.006, min=0.006*0.5, max=0.006*2.0)
+  params.add('tau_v1_minus', 75, min=75.0*0.5, max=75.0*2.0)
+  params.add('tau_v2_minus', 10, min=10.0*0.5, max=10.0*2.0)
+  params.add('tau_v_plus', 1.4506, min=1.4506*0.5, max=1.4506*2.0)
+  params.add('tau_w1_minus', 6.0, min=6.0*0.5, max=6.0*2.0)
+  params.add('tau_w2_minus', 140, min=140.0*0.5, max=140.0*2.0)
+  params.add('k_w_minus', 200, min=200.0*0.5, max=200.0*2.0)
+  params.add('u_w_minus', 0.016, min=0.016*0.5, max=0.016*2.0)
+  params.add('tau_w_plus', 280, min=280.0*0.5, max=280.0*2.0)
+  params.add('tau_fi', 0.1, min=0.1*0.5, max=0.1*2.0)
+  params.add('tau_o1', 470, min=470.0*0.5, max=470.0*2.0)
+  params.add('tau_o2', 6.0, min=6.0*0.5, max=6.0*2.0)
+  params.add('tau_so1', 40, min=40.0*0.5, max=40.0*2.0)
+  params.add('tau_so2', 1.2, min=1.2*0.5, max=1.2*2.0)
+  params.add('k_so', 2.0, min=2.0*0.5, max=2.0*2.0)
+  params.add('u_so', 0.65, min=0.65*0.5, max=0.65*2.0)
+  params.add('tau_s1', 2.7342, min=2.7342*0.5, max=2.7342*2.0)
+  params.add('tau_s2', 2.0, min=2.0*0.5, max=2.0*2.0)
+  params.add('k_s', 2.0994, min=2.0994*0.5, max=2.0994*2.0)
+  params.add('u_s', 0.9087, min=0.9087*0.5, max=0.9087*2.0)
+  params.add('tau_si', 2.9013, min=2.9013*0.5, max=2.9013*2.0)
+  params.add('tau_w_inf', 0.0273, min=0.0273*0.5, max=0.0273*2.0)
+  params.add('w_inf_star', 0.78, min=0.78*0.5, max=0.78*2.0)
+
+elif model == 'endo':
+  params.add('u_o', 0.0, min=0.0*0.5, max=1.0)
+  params.add('u_u', 1.56, min=1.56*0.5, max=1.56*2.0)
+  params.add('theta_v', 0.3, min=0.3*0.5, max=0.3*2.0)
+  params.add('theta_w', 0.13, min=0.13*0.5, max=0.13*2.0)
+  params.add('theta_v_minus', 0.2, min=0.2*0.5, max=0.2*2.0)
+  params.add('theta_o', 0.006, min=0.006*0.5, max=0.006*2.0)
+  params.add('tau_v1_minus', 75.0, min=75.0*0.5, max=75.0*2.0)
+  params.add('tau_v2_minus', 10.0, min=10.0*0.5, max=10.0*2.0)
+  params.add('tau_v_plus', 1.4506, min=1.4506*0.5, max=1.4506*2.0)
+  params.add('tau_w1_minus', 6.0, min=6.0*0.5, max=6.0*2.0)
+  params.add('tau_w2_minus', 140.0, min=140.0*0.5, max=140.0*2.0)
+  params.add('k_w_minus', 200.0, min=200.0*0.5, max=200.0*2.0)
+  params.add('u_w_minus', 0.016, min=0.016*0.5, max=0.016*2.0)
+  params.add('tau_w_plus', 280.0, min=280.0*0.5, max=280.0*2.0)
+  params.add('tau_fi', 0.1, min=0.1*0.5, max=0.1*2.0)
+  params.add('tau_o1', 470.0, min=470.0*0.5, max=470.0*2.0)
+  params.add('tau_o2', 6.0, min=6.0*0.5, max=6.0*2.0)
+  params.add('tau_so1', 40.0, min=40.0*0.5, max=40.0*2.0)
+  params.add('tau_so2', 1.2, min=1.2*0.5, max=1.2*2.0)
+  params.add('k_so', 2.0, min=2.0*0.5, max=2.0*2.0)
+  params.add('u_so', 0.65, min=0.65*0.5, max=0.65*2.0)
+  params.add('tau_s1', 2.7342, min=2.7342*0.5, max=2.7342*2.0)
+  params.add('tau_s2', 2.0, min=2.0*0.5, max=2.0*2.0)
+  params.add('k_s', 2.0994, min=2.0994*0.5, max=2.0994*2.0)
+  params.add('u_s', 0.9087, min=0.9087*0.5, max=0.9087*2.0)
+  params.add('tau_si', 2.9013, min=2.9013*0.5, max=2.9013*2.0)
+  params.add('tau_w_inf', 0.0273, min=0.0273*0.5, max=0.0273*2.0)
+  params.add('w_inf_star', 0.78, min=0.78*0.5, max=0.78*2.0)
+   
+elif model == 'm':
+  params.add('u_o', 0.0, min=0.0*0.5, max=1.0)
+  params.add('u_u', 1.61, min=1.61*0.5, max=1.61*2.0)
+  params.add('theta_v', 0.3, min=0.3*0.5, max=0.3*2.0)
+  params.add('theta_w', 0.13, min=0.13*0.5, max=0.13*2.0)
+  params.add('theta_v_minus', 0.1, min=0.1*0.5, max=0.1*2.0)
+  params.add('theta_o', 0.005, min=0.005*0.5, max=0.005*2.0)
+  params.add('tau_v1_minus', 80.0, min=80.0*0.5, max=80.0*2.0)
+  params.add('tau_v2_minus', 1.4506, min=1.4506*0.5, max=1.4506*2.0)
+  params.add('tau_v_plus', 1.4506, min=1.4506*0.5, max=1.4506*2.0)
+  params.add('tau_w1_minus', 70.0, min=70.0*0.5, max=70.0*2.0)
+  params.add('tau_w2_minus', 8.0, min=8.0*0.5, max=8.0*2.0)
+  params.add('k_w_minus', 200.0, min=200.0*0.5, max=200.0*2.0)
+  params.add('u_w_minus', 0.016, min=0.016*0.5, max=0.016*2.0)
+  params.add('tau_w_plus', 280.0, min=280.0*0.5, max=280.0*2.0)
+  params.add('tau_fi', 0.078, min=0.078*0.5, max=0.078*2.0)
+  params.add('tau_o1', 410.0, min=410.0*0.5, max=410.0*2.0)
+  params.add('tau_o2', 7.0, min=7.0*0.5, max=7.0*2.0)
+  params.add('tau_so1', 91.0, min=91.0*0.5, max=91.0*2.0)
+  params.add('tau_so2', 0.8, min=0.8*0.5, max=0.8*2.0)
+  params.add('k_so', 2.1, min=2.1*0.5, max=2.1*2.0)
+  params.add('u_so', 0.6, min=0.6*0.5, max=0.6*2.0)
+  params.add('tau_s1', 2.7342, min=2.7342*0.5, max=2.7342*2.0)
+  params.add('tau_s2', 4.0, min=4.0*0.5, max=4.0*2.0)
+  params.add('k_s', 2.0994, min=2.0994*0.5, max=2.0994*2.0)
+  params.add('u_s', 0.9087, min=0.9087*0.5, max=0.9087*2.0)
+  params.add('tau_si', 3.3849, min=3.3849*0.5, max=3.3849*2.0)
+  params.add('tau_w_inf', 0.01, min=0.01*0.5, max=0.01*2.0)
+  params.add('w_inf_star', 0.5, min=0.5*0.5, max=0.5*2.0)
+
+elif model == 'tnnp-epi-2':
+  params.add('u_o', 0.0, min=-80.0, max=100.0)
+  params.add('u_u', 1.56, min=1.56*0.5, max=1.56*2.0)
+  params.add('theta_v', 0.3, min=0.3*0.5, max=0.3*2.0)
+  params.add('theta_w', 0.13, min=0.13*0.5, max=0.13*2.0)
+  params.add('theta_v_minus', 0.2, min=0.2*0.5, max=0.2*2.0)
+  params.add('theta_o', 0.006, min=0.006*0.5, max=0.006*2.0)
+  params.add('tau_v1_minus', 75*40, min=75.0*0.5*40, max=75.0*2.0*40)
+  params.add('tau_v2_minus', 10*80, min=10.0*0.5*40, max=10.0*2.0*40)
+  params.add('tau_v_plus', 1.4506, min=1.4506*0.5, max=1.4506*2.0)
+  params.add('tau_w1_minus', 6.0, min=6.0*0.5, max=6.0*2.0)
+  params.add('tau_w2_minus', 140, min=140.0*0.5, max=140.0*2.0)
+  params.add('k_w_minus', 200, min=200.0*0.5, max=200.0*2.0)
+  params.add('u_w_minus', 0.016, min=0.016*0.5, max=0.016*2.0)
+  params.add('tau_w_plus', 280, min=280.0*0.5, max=280.0*2.0)
+  params.add('tau_fi', 0.1*80, min=0.1*0.5*40, max=0.1*2.0*40)
+  params.add('tau_o1', 470*80, min=470.0*0.5*40, max=470.0*2.0*40)
+  params.add('tau_o2', 6.0*80, min=6.0*0.5*40, max=6.0*2.0*40)
+  params.add('tau_so1', 40, min=40.0*0.5, max=40.0*2.0)
+  params.add('tau_so2', 1.2, min=1.2*0.5, max=1.2*2.0)
+  params.add('k_so', 2.0, min=2.0*0.5, max=2.0*2.0)
+  params.add('u_so', 0.65, min=0.65*0.5, max=0.65*2.0)
+  params.add('tau_s1', 2.7342, min=2.7342*0.5, max=2.7342*2.0)
+  params.add('tau_s2', 2.0, min=2.0*0.5, max=2.0*2.0)
+  params.add('k_s', 2.0994, min=2.0994*0.5, max=2.0994*2.0)
+  params.add('u_s', 0.9087, min=0.9087*0.5, max=0.9087*2.0)
+  params.add('tau_si', 2.9013, min=2.9013*0.5, max=2.9013*2.0)
+  params.add('tau_w_inf', 0.0273*40, min=0.0273*0.5*40, max=0.0273*2.0*40)
+  params.add('w_inf_star', 0.78, min=0.78*0.5, max=0.78*2.0)
 
 # # Pegar dados de tempo e do ten Tusscher
-ref = read_file_to_array('minimal-model-cell-epi-0.010.txt')
+# ref = read_file_to_array('minimal-model-cell-'+ model +'-0.010.txt')
+ref = read_file_to_array('tnnp-cell-epi-norm-0.010.txt')
 #plot_AP(a, 'TNNP 2006 EPI Norm')
 dt = 10**-2
 t0 = 0
@@ -59,19 +157,22 @@ Num_pts = (int)((tf - t0) / dt)
 time = np.linspace(0, tf, Num_pts+1)
 
 
-# max_nfev_values = [50, 100, 250, 500, 1000, 5000, 10000]
-max_nfev_values = [5000]
+max_nfev_values = [50, 100, 250, 500]
+# max_nfev_values = [5000]
 
-# method = 'leastsq'
+method = 'leastsq'
 # method = 'differential_evolution'
 # method = 'basinhopping'
 # method = 'global_minimize'
-method = 'nelder'
+# method = 'nelder'
 
-model_folder = method
+outer_folder = model
+os.makedirs(outer_folder, exist_ok=True)
+model_folder = os.path.join(outer_folder, method)
 os.makedirs(model_folder, exist_ok=True)
 
 for max_nfev in max_nfev_values:
+  print("Using model =", model)
   print("Using method =", method)
   print("Using max_nfev =", max_nfev)
   start_time = time_lib.time()

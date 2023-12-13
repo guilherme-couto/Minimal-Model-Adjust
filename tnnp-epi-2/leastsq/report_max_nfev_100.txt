@@ -1,0 +1,49 @@
+
+# Fit using leastsq (max_nfev=100):
+Time: 75.420756 seconds
+[[Fit Statistics]]
+    # fitting method   = leastsq
+    # function evals   = 100
+    # data points      = 60001
+    # variables        = 28
+    chi-square         = 3655.45981
+    reduced chi-square = 0.06095176
+    Akaike info crit   = -167835.159
+    Bayesian info crit = -167583.099
+##  Warning: uncertainties could not be estimated:
+    theta_v_minus:  at initial value
+    theta_o:        at initial value
+    tau_v1_minus:   at initial value
+    u_s:            at initial value
+    tau_si:         at initial value
+    tau_w_inf:      at initial value
+    w_inf_star:     at initial value
+[[Variables]]
+    u_o:            2.78938750 (init = 0)
+    u_u:            1.95890747 (init = 1.56)
+    theta_v:        0.48386281 (init = 0.3)
+    theta_w:        0.09927479 (init = 0.13)
+    theta_v_minus:  0.20000000 (init = 0.2)
+    theta_o:        0.00600000 (init = 0.006)
+    tau_v1_minus:   3000.00000 (init = 3000)
+    tau_v2_minus:   771.412028 (init = 800)
+    tau_v_plus:     1.17863872 (init = 1.4506)
+    tau_w1_minus:   10.7273028 (init = 6)
+    tau_w2_minus:   70.5159668 (init = 140)
+    k_w_minus:      399.104510 (init = 200)
+    u_w_minus:      0.02283575 (init = 0.016)
+    tau_w_plus:     254.955268 (init = 280)
+    tau_fi:         4.96273874 (init = 8)
+    tau_o1:         37595.1458 (init = 37600)
+    tau_o2:         207.796860 (init = 480)
+    tau_so1:        41.0525663 (init = 40)
+    tau_so2:        1.92400923 (init = 1.2)
+    k_so:           2.57439060 (init = 2)
+    u_so:           0.43342249 (init = 0.65)
+    tau_s1:         2.95563860 (init = 2.7342)
+    tau_s2:         2.37656613 (init = 2)
+    k_s:            3.22263174 (init = 2.0994)
+    u_s:            0.90870000 (init = 0.9087)
+    tau_si:         2.90130000 (init = 2.9013)
+    tau_w_inf:      1.09200000 (init = 1.092)
+    w_inf_star:     0.78000000 (init = 0.78)
