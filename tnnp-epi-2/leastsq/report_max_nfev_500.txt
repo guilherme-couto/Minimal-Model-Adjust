@@ -1,15 +1,15 @@
 
 # Fit using leastsq (max_nfev=500):
-Time: 356.472325 seconds
+Time: 386.867280 seconds
 [[Fit Statistics]]
     # fitting method   = leastsq
     # function evals   = 500
     # data points      = 60001
     # variables        = 28
-    chi-square         = 2635.76597
-    reduced chi-square = 0.04394921
-    Akaike info crit   = -187458.369
-    Bayesian info crit = -187206.310
+    chi-square         = 1345.23118
+    reduced chi-square = 0.02243061
+    Akaike info crit   = -227815.519
+    Bayesian info crit = -227563.460
 ##  Warning: uncertainties could not be estimated:
     theta_v_minus:  at initial value
     theta_o:        at initial value
@@ -19,30 +19,30 @@ Time: 356.472325 seconds
     tau_w_inf:      at initial value
     w_inf_star:     at initial value
 [[Variables]]
-    u_o:            4.32111230 (init = 1)
-    u_u:            0.84027076 (init = 1.56)
-    theta_v:        0.50174887 (init = 0.3)
-    theta_w:        0.08865916 (init = 0.13)
+    u_o:            0.64154661 (init = 0.5)
+    u_u:            0.94938199 (init = 1.56)
+    theta_v:        0.23463603 (init = 0.3)
+    theta_w:        0.06502790 (init = 0.13)
     theta_v_minus:  0.20000000 (init = 0.2)
     theta_o:        0.00600000 (init = 0.006)
     tau_v1_minus:   3000.00000 (init = 3000)
-    tau_v2_minus:   250.202277 (init = 800)
-    tau_v_plus:     2.43081632 (init = 1.4506)
-    tau_w1_minus:   11.7334007 (init = 6)
-    tau_w2_minus:   146.902610 (init = 140)
-    k_w_minus:      100.272511 (init = 200)
-    u_w_minus:      0.02232637 (init = 0.016)
-    tau_w_plus:     271.593281 (init = 280)
-    tau_fi:         6.44088342 (init = 4)
-    tau_o1:         36037.8272 (init = 18800)
-    tau_o2:         194.722862 (init = 240)
-    tau_so1:        40.3181019 (init = 40)
-    tau_so2:        1.29335160 (init = 1.2)
-    k_so:           2.39530387 (init = 2)
-    u_so:           0.32626434 (init = 0.65)
-    tau_s1:         2.91543207 (init = 2.7342)
-    tau_s2:         3.47368664 (init = 2)
-    k_s:            2.30676787 (init = 2.0994)
+    tau_v2_minus:   783.482685 (init = 800)
+    tau_v_plus:     2.03659310 (init = 2.9012)
+    tau_w1_minus:   6.63696098 (init = 6)
+    tau_w2_minus:   139.906548 (init = 140)
+    k_w_minus:      240.179732 (init = 200)
+    u_w_minus:      0.01254641 (init = 0.016)
+    tau_w_plus:     228.212766 (init = 280)
+    tau_fi:         6.19341175 (init = 8)
+    tau_o1:         25373.8383 (init = 37600)
+    tau_o2:         218.560639 (init = 480)
+    tau_so1:        42.8795223 (init = 40)
+    tau_so2:        1.46892778 (init = 1.2)
+    k_so:           2.53709525 (init = 2)
+    u_so:           0.32514900 (init = 0.65)
+    tau_s1:         2.98802746 (init = 2.7342)
+    tau_s2:         1.97741141 (init = 2)
+    k_s:            2.69413531 (init = 2.0994)
     u_s:            0.90870000 (init = 0.9087)
     tau_si:         2.90130000 (init = 2.9013)
     tau_w_inf:      1.09200000 (init = 1.092)

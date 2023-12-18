@@ -27,7 +27,7 @@ Time: 706.015059 seconds
     theta_o:        0.00600000 (init = 0.006)
     tau_v1_minus:   3000.00000 (init = 3000)
     tau_v2_minus:   663.057769 (init = 400) # DOBRO
-    tau_v_plus:     2.87343520 (init = 1.4506)  # DOBRO
+    tau_v_plus:     2.87343520 (init = 1.4506)  # DOBRO -> acertou
     tau_w1_minus:   8.32939112 (init = 6)
     tau_w2_minus:   272.535941 (init = 140) # DOBRO
     k_w_minus:      387.841141 (init = 200) # DOBRO
