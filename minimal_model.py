@@ -21,7 +21,7 @@ def resid(params, time, ydata):
 # model = 'epi'
 model = 'endo'
 # model = 'm'
-model = 'tnnp-epi-4'
+model = 'tnnp-epi-5'
 
 # Valores e intervalos dos parâmetros do minimal model
 params = lmfit.Parameters()
@@ -116,35 +116,35 @@ elif model == 'm':
   params.add('tau_w_inf', 0.01, min=0.01*0.5, max=0.01*2.0)
   params.add('w_inf_star', 0.5, min=0.5*0.5, max=0.5*2.0)
 
-elif model == 'tnnp-epi-4':
-  params.add('u_o', 0.5, min=0, max=1.0)
-  params.add('u_u', 0.78, min=0.78*0.5, max=0.78*2.0)
-  params.add('theta_v', 0.42, min=0.3*0.5, max=0.3*2.0)
-  params.add('theta_w', 0.06, min=0.06*0.5, max=0.06*2.0)
-  params.add('theta_v_minus', 0.15, min=0.2*0.5, max=0.2*2.0)
-  params.add('theta_o', 0.003, min=0.003*0.5, max=0.003*2.0)
-  params.add('tau_v1_minus', 94.0, min=75.0*0.5, max=75.0*2.0)
-  params.add('tau_v2_minus', 17.0, min=10.0*0.5, max=10.0*2.0)
-  params.add('tau_v_plus', 1.95*2.0, min=1.4506*0.5, max=1.4506*2.0)
-  params.add('tau_w1_minus', 11.0, min=11.0*0.5, max=11.0*2.0)
-  params.add('tau_w2_minus', 128.0, min=140.0*0.5, max=140.0*2.0)
-  params.add('k_w_minus', 272.0, min=200.0*0.5, max=200.0*2.0)
-  params.add('u_w_minus', 0.016, min=0.016*0.5, max=0.016*2.0)
-  params.add('tau_w_plus', 560.0, min=560.0*0.5, max=560.0*2.0)
-  params.add('tau_fi', 0.1*80, min=0.1*0.5*40, max=0.1*2.0*40)
-  params.add('tau_o1', 470*60, min=470.0*0.5*40, max=470.0*2.0*40)
-  params.add('tau_o2', 6.0*80, min=6.0*0.5*40, max=6.0*2.0*40)
-  params.add('tau_so1', 25.0, min=40.0*0.5, max=40.0*2.0)
-  params.add('tau_so2', 1.2, min=1.2*0.5, max=1.2*2.0)
-  params.add('k_so', 2.0, min=2.0*0.5, max=2.0*2.0)
-  params.add('u_so', 0.6, min=0.65*0.5, max=0.65*2.0)
-  params.add('tau_s1', 2.7342*2, min=2.7342*2*0.5, max=2.7342*2*2.0)
-  params.add('tau_s2', 1.0, min=1.0*0.5, max=1.0*2.0)
-  params.add('k_s', 1.3, min=2.0994*0.5, max=2.0994*2.0)
-  params.add('u_s', 1.8, min=1.8*0.5, max=1.8*2.0)
-  params.add('tau_si', 1.6, min=1.6*0.5, max=1.6*2.0)
-  params.add('tau_w_inf', 0.0273*50, min=0.0273*0.5*40, max=0.0273*2.0*40)
-  params.add('w_inf_star', 0.78*2, min=0.78*2*0.5, max=0.78*2*2.0)
+elif model == 'tnnp-epi-5':
+  params.add('u_o', 0.49, min=0.49*0.7, max=0.49*1.5)
+  params.add('u_u', 0.46, min=0.46*0.7, max=0.46*1.5)
+  params.add('theta_v', 0.42, min=0.42*0.7, max=0.42*1.5)
+  params.add('theta_w', 0.03, min=0.03*0.7, max=0.03*1.5)
+  params.add('theta_v_minus', 0.15, min=0.15*0.7, max=0.15*1.5)
+  params.add('theta_o', 0.003, min=0.003*0.7, max=0.003*1.5)
+  params.add('tau_v1_minus', 94.0, min=94.0*0.7, max=94.0*1.5)
+  params.add('tau_v2_minus', 20.0, min=20.0*0.7, max=20.0*1.5)
+  params.add('tau_v_plus', 2.7, min=2.7*0.7, max=2.7*1.5)
+  params.add('tau_w1_minus', 16.0, min=16.0*0.7, max=16.0*1.5)
+  params.add('tau_w2_minus', 250.0, min=250.0*0.7, max=250.0*1.5)
+  params.add('k_w_minus', 395.0, min=395.0*0.7, max=395.0*1.5)
+  params.add('u_w_minus', 0.016, min=0.016*0.7, max=0.016*1.5)
+  params.add('tau_w_plus', 670.0, min=670.0*0.7, max=670.0*1.5)
+  params.add('tau_fi', 2.35, min=2.35*0.7, max=2.35*1.5)
+  params.add('tau_o1', 26000.0, min=26000.0*0.7, max=26000.0*1.5)
+  params.add('tau_o2', 390.0, min=390.0*0.7, max=390.0*1.5)
+  params.add('tau_so1', 50.0, min=50.0*0.7, max=50.0*1.5)
+  params.add('tau_so2', 1.1, min=1.1*0.7, max=1.1*1.5)
+  params.add('k_so', 1.9, min=1.9*0.7, max=1.9*1.5)
+  params.add('u_so', 0.7, min=0.7*0.7, max=0.7*1.5)
+  params.add('tau_s1', 10.0, min=10.0*0.7, max=10.0*1.5)
+  params.add('tau_s2', 0.8, min=0.8*0.7, max=0.8*1.5)
+  params.add('k_s', 1.75, min=1.75*0.7, max=1.75*1.5)
+  params.add('u_s', 3.4, min=3.4*0.7, max=3.4*1.5)
+  params.add('tau_si', 1.9, min=1.9*0.7, max=1.9*1.5)
+  params.add('tau_w_inf', 0.0273*50, min=0.0273*0.7, max=0.0273*1.5)
+  params.add('w_inf_star', 1.4, min=1.4*0.7, max=1.4*1.5)
 
 # # Pegar dados de tempo e do ten Tusscher
 # ref = read_file_to_array('minimal-model-cell-'+ model +'-0.010.txt')
@@ -157,8 +157,8 @@ Num_pts = (int)((tf - t0) / dt)
 time = np.linspace(0, tf, Num_pts+1)
 
 
-# max_nfev_values = [50, 100, 250, 500]
-max_nfev_values = [1000]
+max_nfev_values = [50, 100, 250, 500]
+# max_nfev_values = [1000]
 
 # method = 'leastsq'
 # method = 'differential_evolution'

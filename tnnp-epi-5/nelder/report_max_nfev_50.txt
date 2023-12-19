@@ -1,0 +1,46 @@
+
+# Fit using nelder (max_nfev=50):
+Time: 35.446611 seconds
+[[Fit Statistics]]
+    # fitting method   = Nelder-Mead
+    # function evals   = 51
+    # data points      = 60001
+    # variables        = 28
+    chi-square         = 208.027876
+    reduced chi-square = 0.00346869
+    Akaike info crit   = -339816.329
+    Bayesian info crit = -339564.270
+##  Warning: uncertainties could not be estimated:
+    this fitting method does not natively calculate uncertainties
+    and numdifftools is not installed for lmfit to do this. Use
+    `pip install numdifftools` for lmfit to estimate uncertainties
+    with this fitting method.
+[[Variables]]
+    u_o:            0.49044311 (init = 0.49)
+    u_u:            0.45967284 (init = 0.46)
+    theta_v:        0.41972300 (init = 0.42)
+    theta_w:        0.03011436 (init = 0.03)
+    theta_v_minus:  0.15000119 (init = 0.15)
+    theta_o:        0.00299974 (init = 0.003)
+    tau_v1_minus:   93.9832613 (init = 94)
+    tau_v2_minus:   20.0093344 (init = 20)
+    tau_v_plus:     2.70202028 (init = 2.7)
+    tau_w1_minus:   15.9923005 (init = 16)
+    tau_w2_minus:   250.150656 (init = 250)
+    k_w_minus:      394.784803 (init = 395)
+    u_w_minus:      0.01597705 (init = 0.016)
+    tau_w_plus:     669.038765 (init = 670)
+    tau_fi:         2.34858026 (init = 2.35)
+    tau_o1:         25962.6983 (init = 26000)
+    tau_o2:         389.838894 (init = 390)
+    tau_so1:        49.9282660 (init = 50)
+    tau_so2:        1.09842185 (init = 1.1)
+    k_so:           1.90203586 (init = 1.9)
+    u_so:           0.69899572 (init = 0.7)
+    tau_s1:         10.0259515 (init = 10)
+    tau_s2:         0.79885226 (init = 0.8)
+    k_s:            1.74748931 (init = 1.75)
+    u_s:            3.40115560 (init = 3.4)
+    tau_si:         1.89935382 (init = 1.9)
+    tau_w_inf:      0.04094998 (init = 0.04095)
+    w_inf_star:     1.40031012 (init = 1.4)
