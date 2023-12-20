@@ -8,24 +8,26 @@ import io
 import sys
 import os
 
-def resid(params, time, ydata):
-    param_values = []
-    for p in param_names:
-        param_values.append(params[p].value)
-    
-    y_model = minimal_model(param_values)
-    # print(f'len(y_model) = {len(y_model)}')
-    
-    return y_model - ydata
+# ALTERACAO DE PARAMETROS:
 
+# ESCOLHA DE MODELO QUE VAI FAZER O FIT
 # model = 'epi'
-model = 'endo'
+# model = 'endo'
 # model = 'm'
 model = 'tnnp-epi-5'
 
-# Valores e intervalos dos parâmetros do minimal model
-params = lmfit.Parameters()
+# ESCOLHA DA FUNCAO DO LMFIT QUE VAI AJUSTAR (recomendado: leastsq e nelder)
+# method = 'leastsq'
+# method = 'differential_evolution'
+# method = 'basinhopping'
+# method = 'global_minimize'
+method = 'nelder'
 
+# ESCOLHA DO ARRAY DE NUMERO MAXIMO DE ITERACOES DA FUNCAO
+max_nfev_values = [50, 100, 250, 500]
+# max_nfev_values = [1000]
+
+# DEFINICAO DOS PARAMETROS DO MODELO EM USO (pode criar um novo e alterar seus parametros para o fit)
 if model == 'epi':
   params.add('u_o', 0, min=0*0.5, max=1.0)
   params.add('u_u', 1.56, min=1.56*0.5, max=1.56*2.0)
@@ -156,15 +158,18 @@ tf = 600
 Num_pts = (int)((tf - t0) / dt)
 time = np.linspace(0, tf, Num_pts+1)
 
+def resid(params, time, ydata):
+    param_values = []
+    for p in param_names:
+        param_values.append(params[p].value)
+    
+    y_model = minimal_model(param_values)
+    # print(f'len(y_model) = {len(y_model)}')
+    
+    return y_model - ydata
 
-max_nfev_values = [50, 100, 250, 500]
-# max_nfev_values = [1000]
-
-# method = 'leastsq'
-# method = 'differential_evolution'
-# method = 'basinhopping'
-# method = 'global_minimize'
-method = 'nelder'
+# Valores e intervalos dos parâmetros do minimal model
+params = lmfit.Parameters()
 
 outer_folder = model
 os.makedirs(outer_folder, exist_ok=True)
@@ -210,56 +215,3 @@ for max_nfev in max_nfev_values:
   plt.legend()
   plt.savefig(f'{model_folder}/fit_{max_nfev}_max_nfev.png')
   plt.clf()
-
-
-
-
-# import matplotlib.pyplot as plt
-# import numpy as np
-
-# # Defina uma lista de valores para max_nfev
-# max_nfev_values = [50, 100, 250, 500, 1000, 5000, 10000]
-
-# # Inicialize listas para armazenar os erros
-# relative_errors = []
-
-# # Loop sobre os valores de max_nfev
-# for max_nfev in max_nfev_values:
-#     # Carregar o arquivo de resultados
-#     result_filename = f'result_max_nfev_{max_nfev}.txt'
-#     with open(result_filename, 'r') as result_file:
-#         # Ignorar linhas de comentário, se houver
-#         while True:
-#             line = result_file.readline()
-#             if not line.startswith('#'):
-#                 break
-
-#         # Ler os resultados e ajustar o número de pontos
-#         results = [float(line.strip()) for line in result_file][:len(time)]
-
-#     # Calcular o erro relativo
-#     relative_error = [abs((r - ref_val) / ref_val) if ref_val != 0 else abs(r - ref_val) for r, ref_val in zip(results, ref)]
-
-#     # Calcular as barras de erro
-#     error_bar = np.zeros(len(time))  # Substitua por valores reais de erro se disponíveis
-
-#     # Plotar cada gráfico separadamente com barras de erro no erro relativo
-#     plt.figure(figsize=(10, 6))
-
-#     time = time[:len(results)]
-#     error_bar = error_bar[:len(results)]
-#     ref = ref[:len(results)]
-
-#     # Plotar o resultado
-#     plt.plot(time, ref, label='Reference', color='blue')
-#     plt.plot(time, results, label=f'max_nfev={max_nfev}', color='green')
-
-#     # Plotar o erro relativo com barras de erro
-#     plt.errorbar(time, relative_error, yerr=error_bar, label='Relative Error', color='red', fmt='o', markersize=2)
-
-#     plt.xlabel('Time')
-#     plt.ylabel('Result')
-#     plt.title(f'Results and Relative Error with Error Bars (max_nfev={max_nfev})')
-#     plt.legend()
-#     plt.savefig(f'fit_error_bar_max_nfev_{max_nfev}.png')
-#     plt.close()  # Fechar o gráfico para liberar memória
