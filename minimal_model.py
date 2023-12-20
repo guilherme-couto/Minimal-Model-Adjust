@@ -28,6 +28,9 @@ max_nfev_values = [50, 100, 250, 500]
 # max_nfev_values = [1000]
 
 # DEFINICAO DOS PARAMETROS DO MODELO EM USO (pode criar um novo e alterar seus parametros para o fit)
+# Valores e intervalos dos parâmetros do minimal model
+params = lmfit.Parameters()
+
 if model == 'epi':
   params.add('u_o', 0, min=0*0.5, max=1.0)
   params.add('u_u', 1.56, min=1.56*0.5, max=1.56*2.0)
@@ -167,9 +170,6 @@ def resid(params, time, ydata):
     # print(f'len(y_model) = {len(y_model)}')
     
     return y_model - ydata
-
-# Valores e intervalos dos parâmetros do minimal model
-params = lmfit.Parameters()
 
 outer_folder = model
 os.makedirs(outer_folder, exist_ok=True)
