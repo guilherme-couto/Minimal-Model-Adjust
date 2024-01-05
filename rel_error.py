@@ -33,9 +33,9 @@ def plot_absolute_error(time, reference, data, max_nfev):
     plt.clf()
 
 # Uso
-model_folder = 'tnnp-epi-5'
+model_folder = 'tnnp-epi-new'
 method_folder = 'nelder'
-max_nfev = 500
+max_nfev = 1
 reference = read_data('tnnp-cell-epi-norm-0.010.txt')
 data = read_data(f'{model_folder}/{method_folder}/result_max_nfev_{max_nfev}.txt')
 time = np.linspace(0, 600, len(data))  # Assumindo que o tempo vai de 0 a 600 com o mesmo número de pontos que os dados

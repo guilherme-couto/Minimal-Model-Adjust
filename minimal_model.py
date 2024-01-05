@@ -14,7 +14,7 @@ import os
 # model = 'epi'
 # model = 'endo'
 # model = 'm'
-model = 'tnnp-epi-5'
+model = 'tnnp-epi-new-2'
 
 # ESCOLHA DA FUNCAO DO LMFIT QUE VAI AJUSTAR (recomendado: leastsq e nelder)
 # method = 'leastsq'
@@ -24,8 +24,8 @@ model = 'tnnp-epi-5'
 method = 'nelder'
 
 # ESCOLHA DO ARRAY DE NUMERO MAXIMO DE ITERACOES DA FUNCAO
-max_nfev_values = [50, 100, 250, 500]
-# max_nfev_values = [1000]
+# max_nfev_values = [50, 100, 250, 500]
+max_nfev_values = [1]
 
 # DEFINICAO DOS PARAMETROS DO MODELO EM USO (pode criar um novo e alterar seus parametros para o fit)
 # Valores e intervalos dos parâmetros do minimal model
@@ -121,35 +121,35 @@ elif model == 'm':
   params.add('tau_w_inf', 0.01, min=0.01*0.5, max=0.01*2.0)
   params.add('w_inf_star', 0.5, min=0.5*0.5, max=0.5*2.0)
 
-elif model == 'tnnp-epi-5':
-  params.add('u_o', 0.49, min=0.49*0.7, max=0.49*1.5)
-  params.add('u_u', 0.46, min=0.46*0.7, max=0.46*1.5)
-  params.add('theta_v', 0.42, min=0.42*0.7, max=0.42*1.5)
-  params.add('theta_w', 0.03, min=0.03*0.7, max=0.03*1.5)
+elif model == 'tnnp-epi-new-2':
+  params.add('u_o', 0.39, min=0.39*0.7, max=0.39*1.5)
+  params.add('u_u', 0.5, min=0.5*0.7, max=0.5*1.5)
+  params.add('theta_v', 0.38, min=0.38*0.7, max=0.38*1.5)
+  params.add('theta_w', 0.04, min=0.04*0.7, max=0.04*1.5)
   params.add('theta_v_minus', 0.15, min=0.15*0.7, max=0.15*1.5)
-  params.add('theta_o', 0.003, min=0.003*0.7, max=0.003*1.5)
-  params.add('tau_v1_minus', 94.0, min=94.0*0.7, max=94.0*1.5)
-  params.add('tau_v2_minus', 20.0, min=20.0*0.7, max=20.0*1.5)
-  params.add('tau_v_plus', 2.7, min=2.7*0.7, max=2.7*1.5)
-  params.add('tau_w1_minus', 16.0, min=16.0*0.7, max=16.0*1.5)
-  params.add('tau_w2_minus', 250.0, min=250.0*0.7, max=250.0*1.5)
-  params.add('k_w_minus', 395.0, min=395.0*0.7, max=395.0*1.5)
-  params.add('u_w_minus', 0.016, min=0.016*0.7, max=0.016*1.5)
-  params.add('tau_w_plus', 670.0, min=670.0*0.7, max=670.0*1.5)
-  params.add('tau_fi', 2.35, min=2.35*0.7, max=2.35*1.5)
-  params.add('tau_o1', 26000.0, min=26000.0*0.7, max=26000.0*1.5)
-  params.add('tau_o2', 390.0, min=390.0*0.7, max=390.0*1.5)
-  params.add('tau_so1', 50.0, min=50.0*0.7, max=50.0*1.5)
-  params.add('tau_so2', 1.1, min=1.1*0.7, max=1.1*1.5)
-  params.add('k_so', 1.9, min=1.9*0.7, max=1.9*1.5)
+  params.add('theta_o', 0.002, min=0.002*0.7, max=0.002*1.5)
+  params.add('tau_v1_minus', 130.0, min=130.0*0.7, max=130.0*1.5)
+  params.add('tau_v2_minus', 16.0, min=16.0*0.7, max=16.0*1.5)
+  params.add('tau_v_plus', 3.9, min=3.9*0.7, max=3.9*1.5)
+  params.add('tau_w1_minus', 17.0, min=17.0*0.7, max=17.0*1.5)
+  params.add('tau_w2_minus', 266.0, min=266.0*0.7, max=266.0*1.5)
+  params.add('k_w_minus', 342.0, min=342.0*0.7, max=342.0*1.5)
+  params.add('u_w_minus', 0.013, min=0.013*0.7, max=0.013*1.5)
+  params.add('tau_w_plus', 620.0, min=620.0*0.7, max=620.0*1.5)
+  params.add('tau_fi', 2.92, min=2.92*0.7, max=2.92*1.5)
+  params.add('tau_o1', 29150.0, min=29150.0*0.7, max=29150.0*1.5)
+  params.add('tau_o2', 294.0, min=294.0*0.7, max=294.0*1.5)
+  params.add('tau_so1', 48.0, min=48.0*0.7, max=48.0*1.5)
+  params.add('tau_so2', 0.98, min=0.98*0.7, max=0.98*1.5)
+  params.add('k_so', 1.81, min=1.81*0.7, max=1.81*1.5)
   params.add('u_so', 0.7, min=0.7*0.7, max=0.7*1.5)
-  params.add('tau_s1', 10.0, min=10.0*0.7, max=10.0*1.5)
+  params.add('tau_s1', 9.7, min=9.7*0.7, max=9.7*1.5)
   params.add('tau_s2', 0.8, min=0.8*0.7, max=0.8*1.5)
-  params.add('k_s', 1.75, min=1.75*0.7, max=1.75*1.5)
+  params.add('k_s', 1.67, min=1.67*0.7, max=1.67*1.5)
   params.add('u_s', 3.4, min=3.4*0.7, max=3.4*1.5)
-  params.add('tau_si', 1.9, min=1.9*0.7, max=1.9*1.5)
-  params.add('tau_w_inf', 0.0273*50, min=0.0273*0.7, max=0.0273*1.5)
-  params.add('w_inf_star', 1.4, min=1.4*0.7, max=1.4*1.5)
+  params.add('tau_si', 1.47, min=1.47*0.7, max=1.47*1.5)
+  params.add('tau_w_inf', 0.04, min=0.04*0.7, max=0.04*1.5)
+  params.add('w_inf_star', 1.6, min=1.6*0.7, max=1.6*1.5)
 
 # # Pegar dados de tempo e do ten Tusscher
 # ref = read_file_to_array('minimal-model-cell-'+ model +'-0.010.txt')
@@ -161,15 +161,36 @@ tf = 600
 Num_pts = (int)((tf - t0) / dt)
 time = np.linspace(0, tf, Num_pts+1)
 
+def calculate_max_derivative(data):
+    derivative = np.diff(data)
+    positive_derivative_max = np.max(derivative[derivative > 0])
+    return positive_derivative_max
+
 def resid(params, time, ydata):
-    param_values = []
-    for p in param_names:
-        param_values.append(params[p].value)
-    
+    param_values = [params[p].value for p in param_names]
     y_model = minimal_model(param_values)
-    # print(f'len(y_model) = {len(y_model)}')
-    
-    return y_model - ydata
+
+    # Cálculo dos resíduos padrão
+    residual = y_model - ydata
+
+    # Adicionando a diferença dos máximos
+    max_diff = np.max(y_model) - np.max(ydata)
+    residual += max_diff
+
+    # Adicionando a diferença das derivadas positivas máximas
+    der_max_diff = calculate_max_derivative(y_model) - calculate_max_derivative(ydata)
+    residual += der_max_diff
+
+    # Adicionando a diferença dos valores de repouso ao final
+    rest_diff = params['theta_w'].value - ydata[-1]
+    residual += rest_diff
+
+    # Adicionando a diferença dos valores de repouso ao início
+    rest_diff_init = y_model[0] - 0.01
+    residual += rest_diff_init
+
+    return residual
+
 
 outer_folder = model
 os.makedirs(outer_folder, exist_ok=True)
@@ -181,7 +202,7 @@ for max_nfev in max_nfev_values:
   print("Using method =", method)
   print("Using max_nfev =", max_nfev)
   start_time = time_lib.time()
-  o1 = lmfit.minimize(resid, params, args=(time, ref), method=method, max_nfev=max_nfev)
+  o1 = lmfit.minimize(resid, params, args=(time, ref), method=method)
   end_time = time_lib.time()
   execution_time = end_time - start_time
   print(f"Time: {execution_time:.6f} seconds")
