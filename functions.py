@@ -59,7 +59,8 @@ def minimal_model(parameters_values):
         'u_s': parameters_values[24],
         'tau_si': parameters_values[25],
         'tau_w_inf': parameters_values[26],
-        'w_inf_star': parameters_values[27]
+        'w_inf_star': parameters_values[27],
+        'u_u_2': parameters_values[27]
     }
 
     # Time setup

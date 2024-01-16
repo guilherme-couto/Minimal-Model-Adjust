@@ -14,18 +14,19 @@ import os
 # model = 'epi'
 # model = 'endo'
 # model = 'm'
-model = 'tnnp-epi-new-2'
+# model = 'tnnp-epi-new-2'
+model = 'tnnp-epi-not-norm'
 
 # ESCOLHA DA FUNCAO DO LMFIT QUE VAI AJUSTAR (recomendado: leastsq e nelder)
-# method = 'leastsq'
+method = 'leastsq'
 # method = 'differential_evolution'
 # method = 'basinhopping'
 # method = 'global_minimize'
-method = 'nelder'
+# method = 'nelder'
 
 # ESCOLHA DO ARRAY DE NUMERO MAXIMO DE ITERACOES DA FUNCAO
-# max_nfev_values = [50, 100, 250, 500]
-max_nfev_values = [1]
+max_nfev_values = [10, 50, 100, 250, 500]
+# max_nfev_values = [1]
 
 # DEFINICAO DOS PARAMETROS DO MODELO EM USO (pode criar um novo e alterar seus parametros para o fit)
 # Valores e intervalos dos parâmetros do minimal model
@@ -151,9 +152,41 @@ elif model == 'tnnp-epi-new-2':
   params.add('tau_w_inf', 0.04, min=0.04*0.7, max=0.04*1.5)
   params.add('w_inf_star', 1.6, min=1.6*0.7, max=1.6*1.5)
 
+elif model == 'tnnp-epi-not-norm':
+  params.add('u_o', -80, min=-120, max=80)
+  params.add('u_u', -80, min=-120, max=80)
+  params.add('theta_v', 0.38*40, min=-120, max=80)
+  params.add('theta_w', -0.04*40, min=-120, max=80)
+  params.add('theta_v_minus', -0.15*40, min=-120, max=80)
+  params.add('theta_o', -0.002*40, min=-120, max=80)
+  params.add('tau_v1_minus', 130.0*.4, min=-120, max=80.0)
+  params.add('tau_v2_minus', 16.0, min=-120, max=80.0)
+  params.add('tau_v_plus', 3.9, min=-120, max=80.0)
+  params.add('tau_w1_minus', 17.0, min=-120, max=80.0)
+  params.add('tau_w2_minus', 266.0*.4, min=-120, max=80.0)
+  params.add('k_w_minus', 342.0*.4, min=-120, max=80.0)
+  params.add('u_w_minus', -0.013*40, min=-120, max=80)
+  params.add('tau_w_plus', 620.0, min=-120, max=80.0)
+  params.add('tau_fi', 2.92*100, min=-100, max=100)
+  params.add('tau_o1', 29150.0*0.0004, min=-120, max=80)
+  params.add('tau_o2', 294.0*0.04, min=-120, max=80)
+  params.add('tau_so1', 48.0, min=-120, max=80.0)
+  params.add('tau_so2', -0.98, min=-120, max=80)
+  params.add('k_so', 1.81, min=-120, max=80)
+  params.add('u_so', 0.7*40, min=-120, max=80)
+  params.add('tau_s1', 9.7, min=-120, max=80)
+  params.add('tau_s2', -0.8, min=-120, max=80)
+  params.add('k_s', 1.67, min=-120, max=80)
+  params.add('u_s', 3.4, min=-120, max=80)
+  params.add('tau_si', 1.47, min=-120, max=80)
+  params.add('tau_w_inf', -0.04*40, min=-120, max=80)
+  params.add('w_inf_star', 1.6, min=-120, max=80)
+  params.add('u_u_2', 20, min=-120, max=80)
+
 # # Pegar dados de tempo e do ten Tusscher
 # ref = read_file_to_array('minimal-model-cell-'+ model +'-0.010.txt')
-ref = read_file_to_array('tnnp-cell-epi-norm-0.010.txt')
+# ref = read_file_to_array('tnnp-cell-epi-norm-0.010.txt')
+ref = read_file_to_array('tnnp-cell-0.010.txt')
 #plot_AP(a, 'TNNP 2006 EPI Norm')
 dt = 10**-2
 t0 = 0
@@ -173,21 +206,19 @@ def resid(params, time, ydata):
     # Cálculo dos resíduos padrão
     residual = y_model - ydata
 
-    # Adicionando a diferença dos máximos
-    max_diff = np.max(y_model) - np.max(ydata)
-    residual += max_diff
-
-    # Adicionando a diferença das derivadas positivas máximas
-    der_max_diff = calculate_max_derivative(y_model) - calculate_max_derivative(ydata)
-    residual += der_max_diff
-
-    # Adicionando a diferença dos valores de repouso ao final
-    rest_diff = params['theta_w'].value - ydata[-1]
-    residual += rest_diff
-
-    # Adicionando a diferença dos valores de repouso ao início
-    rest_diff_init = y_model[0] - 0.01
-    residual += rest_diff_init
+    # CONDICOES USADAS NO FIT DO TEN TUSSCHER NORMALIZADO
+    # # Adicionando a diferença dos máximos
+    # max_diff = np.max(y_model) - np.max(ydata)
+    # residual += max_diff
+    # # Adicionando a diferença das derivadas positivas máximas
+    # der_max_diff = calculate_max_derivative(y_model) - calculate_max_derivative(ydata)
+    # residual += der_max_diff
+    # # Adicionando a diferença dos valores de repouso ao final
+    # rest_diff = params['theta_w'].value - ydata[-1]
+    # residual += rest_diff
+    # # Adicionando a diferença dos valores de repouso ao início
+    # rest_diff_init = y_model[0] - 0.01
+    # residual += rest_diff_init
 
     return residual
 

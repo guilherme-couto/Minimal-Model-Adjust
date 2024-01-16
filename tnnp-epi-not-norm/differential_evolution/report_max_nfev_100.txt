@@ -1,0 +1,46 @@
+
+# Fit using differential_evolution (max_nfev=100):
+Time: 1217.390467 seconds
+[[Fit Statistics]]
+    # fitting method   = differential_evolution
+    # function evals   = 1738
+    # data points      = 60001
+    # variables        = 28
+    chi-square         = 2.2899e+08
+    reduced chi-square = 3818.22173
+    Akaike info crit   = 494888.646
+    Bayesian info crit = 495140.705
+##  Warning: uncertainties could not be estimated:
+    this fitting method does not natively calculate uncertainties
+    and numdifftools is not installed for lmfit to do this. Use
+    `pip install numdifftools` for lmfit to estimate uncertainties
+    with this fitting method.
+[[Variables]]
+    u_o:           -90.0000000 (init = -80)
+    u_u:            17.0802216 (init = 20)
+    theta_v:        10.8816635 (init = 15.2)
+    theta_w:        1.91213174 (init = 1.6)
+    theta_v_minus:  8.92784191 (init = 6)
+    theta_o:        0.05945190 (init = 0.08)
+    tau_v1_minus:   181.263676 (init = 130)
+    tau_v2_minus:   23.6628397 (init = 16)
+    tau_v_plus:     4.50391428 (init = 3.9)
+    tau_w1_minus:   19.7819537 (init = 17)
+    tau_w2_minus:   397.818805 (init = 266)
+    k_w_minus:      452.630391 (init = 342)
+    u_w_minus:      0.51379434 (init = 0.52)
+    tau_w_plus:     443.854393 (init = 620)
+    tau_fi:         4599.73680 (init = 4672)
+    tau_o1:         20405.0000 (init = 29150)
+    tau_o2:         205.800000 (init = 294)
+    tau_so1:        50.8409650 (init = 48)
+    tau_so2:        1.27776012 (init = 0.98)
+    k_so:           2.46381288 (init = 1.81)
+    u_so:           29.9534111 (init = 28)
+    tau_s1:         8.07680106 (init = 9.7)
+    tau_s2:         0.92649895 (init = 0.8)
+    k_s:            1.97664097 (init = 1.67)
+    u_s:            201.978423 (init = 136)
+    tau_si:         2.02590023 (init = 1.47)
+    tau_w_inf:      1.19925295 (init = 1.6)
+    w_inf_star:     1.93986146 (init = 1.6)
