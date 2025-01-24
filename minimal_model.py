@@ -2,6 +2,9 @@ from functions import *
 
 import lmfit
 
+# Função de callback para imprimir progresso
+def print_iter_callback(params, iter, resid, *args, **kwargs):
+    print(f"Iteração {iter}: Residuals: {resid}")
 
 def resid(params, x, ydata):
     param_values = []
@@ -9,7 +12,7 @@ def resid(params, x, ydata):
         param_values.append(params[p].value)
     
     y_model = minimal_model(param_values)
-    print(f'len(y_model) = {len(y_model)}')
+    #print(f'len(y_model) = {len(y_model)}')
     
     return y_model - ydata
 
@@ -53,11 +56,26 @@ tf = 600
 Num_pts = (int)((tf - t0) / dt)
 time = np.linspace(0, tf, Num_pts+1)
 
-o1 = lmfit.minimize(resid, params, args=(time, ref), method='leastsq')
+# Ajuste do modelo
+max_evals = 5000
+o1 = lmfit.minimize(resid, params, args=(time, ref), method='leastsq', max_nfev=max_evals, iter_cb=print_iter_callback)
+
+# Exibe o relatório do ajuste
 print("# Fit using leastsq:")
 lmfit.report_fit(o1)
 
-plt.plot(x, ref, '.', label='data')
-plt.plot(x, ref+o1.residual, '-', label='leastsq')
+# Salvar os valores dos parâmetros ajustados em um arquivo txt
+with open('parametros_ajustados.txt', 'w') as f:
+    f.write("# Valores ajustados dos parâmetros\n")
+    for param_name in o1.params:
+        param_value = o1.params[param_name].value
+        f.write(f"{param_name}: {param_value}\n")
+
+# Plot dos resultados
+plt.plot(time, ref, '-', label='data')
+plt.plot(time, ref + o1.residual, '-', label=f'leastsq - {max_evals} evals')
+plt.title('Fit using leastsq')
+plt.xlabel('Time (ms)')
+plt.ylabel('V (mV)')
 plt.legend()
 plt.savefig('fit.png')

@@ -82,9 +82,9 @@ def minimal_model(parameters_values):
 
     # Loop
     for i in range(0, Num_pts):
-        u[i+1] = u[i] + dt * (- (J_fi(u[i], v[i]) + J_so(u[i]) + J_si(u[i], w[i], s[i])) + I_stim(t[i]))
-        v[i+1] = v[i] + dt * ((1.0 - H(u[i] - theta_v)) * (v_inf(u[i]) - v[i]) / tau_v_minus(u[i]) - H(u[i] - theta_v) * v[i] / tau_v_plus)
-        w[i+1] = w[i] + dt * ((1.0 - H(u[i] - theta_w)) * (w_inf(u[i]) - w[i]) / tau_w_minus(u[i]) - H(u[i] - theta_w) * w[i] / tau_w_plus)
-        s[i+1] = s[i] + dt * (((1.0 + np.tanh(k_s * (u[i] - u_s))) / 2 - s[i]) / tau_s(u[i]))
+        u[i+1] = u[i] + dt * (- (J_fi(u[i], v[i], theta_v, u_u, tau_fi) + J_so(u[i], u_o, theta_w, theta_o, tau_o1, tau_o2, tau_so1, tau_so2, k_so, u_so) + J_si(u[i], w[i], s[i], theta_w, tau_si)) + I_stim(t[i]))
+        v[i+1] = v[i] + dt * ((1.0 - H(u[i] - theta_v)) * (v_inf(u[i], theta_v_minus) - v[i]) / tau_v_minus(u[i], theta_v_minus, tau_v1_minus, tau_v2_minus) - H(u[i] - theta_v) * v[i] / tau_v_plus)
+        w[i+1] = w[i] + dt * ((1.0 - H(u[i] - theta_w)) * (w_inf(u[i], theta_o, tau_w_inf, w_inf_star) - w[i]) / tau_w_minus(u[i], tau_w1_minus, tau_w2_minus, k_w_minus, u_w_minus) - H(u[i] - theta_w) * w[i] / tau_w_plus)
+        s[i+1] = s[i] + dt * (((1.0 + np.tanh(k_s * (u[i] - u_s))) / 2 - s[i]) / tau_s(u[i], theta_w, tau_s1, tau_s2))
 
     return u
